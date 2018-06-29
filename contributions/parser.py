@@ -32,7 +32,11 @@ def _parse_line(original_line):
 
     # Split the string into a date string, and a value
     try:
-        date_str, count_str = line.split()
+        try:
+            date_str, count_str = line.split()
+        except:
+            logging.warning("Invalid line:{}".format(original_line))
+            return
 
         # Try to coerce the date string into a datetime.date object:
         try:
